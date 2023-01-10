@@ -29,6 +29,10 @@ const resourceSchema = new mongoose.Schema({
   studentCompleted: {
     type: [],
   },
+  availability: {
+    type: String,
+    enum: ["available", "full", "disabled", "not available"],
+  },
 });
 
 module.exports = mongoose.model("resources", resourceSchema);
