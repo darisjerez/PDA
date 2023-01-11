@@ -33,6 +33,9 @@ const resourceSchema = new mongoose.Schema({
     type: String,
     enum: ["available", "full", "disabled", "not available"],
   },
+  category: {
+    type: [],
+  },
 });
 
 module.exports = mongoose.model("resources", resourceSchema);

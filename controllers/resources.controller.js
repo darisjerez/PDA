@@ -11,6 +11,7 @@ const resourcesController = {
       message: "Resource created",
       resource: newResource,
     });
+    return newResource;
   },
   getAllResources: async (req, res) => {
     const resources = await resourcesModel.find().exec();
@@ -39,6 +40,27 @@ const resourcesController = {
       res.status(200).send({
         message: `Resource with ID: ${resourceId} updated successfully.`,
         newResource,
+      });
+    }
+  },
+  enrollStudent: async (req, res) => {
+    const studentId = req.params.studentId;
+    const currentResource = await resourcesModel.findOne({
+      resourceId: req.params.resourceId,
+    });
+    if (!currentResource) {
+      res
+        .status(404)
+        .send(`Resource with ID: ${req.params.resourceId} not found.`);
+    } else {
+      currentResource.currentEnrolledStudents.push(studentId);
+      currentResource.activeStudents = +1;
+      await currentResource.save();
+
+      res.status(200).send({
+        message: `Student ${studentId} Enrolled on ${currentResource.title} successfully.`,
+        currentResource,
+        studentId,
       });
     }
   },
