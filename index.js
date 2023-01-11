@@ -6,12 +6,14 @@ const app = express();
 
 const studentRouter = require("./routes/student.route");
 const resourcesRouter = require("./routes/resources.route");
+const projectsRouter = require("./routes/projects.route");
 
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
 app.use(studentRouter);
 app.use(resourcesRouter);
+app.use(projectsRouter);
 
 app.listen(port, () => {
   console.log(`App running on ${port}...`);

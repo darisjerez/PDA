@@ -15,6 +15,8 @@ router.get("/resources/:resourceId", (req, res) => {
 router.patch("/resources/:resourceId", (req, res) => {
   resourcesController.updateWithResourceId(req, res);
 });
-
+router.put("/resources/:resourceId/:studentId", (req, res) => {
+  resourcesController.enrollStudent(req, res);
+});
 
 module.exports = router;
