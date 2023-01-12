@@ -4,7 +4,7 @@ const studentModel = require("../models/student.model");
 const studentController = {
     createNewStudents: async(req, res) => {
         const newStudent = new studentModel(req.body);
-        newStudent.randomId = randomId;
+        newStudent.studentId = randomId;
         await newStudent.save();
 
         res.status(201).send({
@@ -16,6 +16,16 @@ const studentController = {
         const student = await studentModel.find().exec();
         res.send(student);
     },
+    getByStudentId: async(req, res) => {
+        const studentId = req.params.studentId;
+        const foundStudent = await studentModel.findOne({ studentId });
+        if (!foundStudent) {
+            res.status(404).send(`Students with ID: ${studentId} not found.`);
+        } else {
+            res.status(302).send(foundStudent);
+        }
+    },
+
 };
 
 module.exports = studentController;

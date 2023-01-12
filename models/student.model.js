@@ -3,17 +3,15 @@ const mongoose = require("mongoose");
 const studentSchema = new mongoose.Schema({
     title: "string",
     studentId: "string",
-    type: {
-        type: String,
-        teachers: ['Daris', '']
-    },
 
-    user: "string",
+
+    username: "string",
     password: "string",
+    email: "string",
 
-    inf_person: {
+    info: {
         name: "string",
-        Date_of_birth: "number",
+        DOB: "string",
         gender: "string"
     },
     contact: {
